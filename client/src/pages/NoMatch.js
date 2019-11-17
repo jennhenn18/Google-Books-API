@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 
+// create a NoMatch component that displays a 404 page that is triggered when page doesn't exist. Also show a fun emoji
 function NoMatch() {
   return (
     <Container fluid>
@@ -21,4 +22,5 @@ function NoMatch() {
   );
 }
 
+// export the NoMatch component
 export default NoMatch;

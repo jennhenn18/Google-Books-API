@@ -1,3 +1,4 @@
+// import all the things so we can get the homepage up and running with the report package and files/components
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
@@ -8,6 +9,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
+// create a class component called Home so that we can update what is displayed on the homepage
 class Home extends Component {
   state = {
     books: [],
