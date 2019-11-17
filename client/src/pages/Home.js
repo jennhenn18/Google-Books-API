@@ -11,12 +11,14 @@ import { List } from "../components/List";
 
 // create a class component called Home so that we can update what is displayed on the homepage
 class Home extends Component {
+  // create a state for this component with an empty books array, a blank string for the query key, and a default message value
   state = {
     books: [],
     q: "",
     message: "Search For A Book To Begin!"
   };
 
+  // create a function that handles update the individual form field with the appropriate value. This is also passed to the form component so it can be invoked there.
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -24,6 +26,7 @@ class Home extends Component {
     });
   };
 
+  // create a function that triggers a GET request searched the Google Books API using the book title we added to the q field. Once there is a response update the state and add the data to the books API so it can be stored as a saved book. If there is an error or nothing is returned empty or there is an error update the state to an empty books array and the message to show that the user should try a different search query.
   getBooks = () => {
     API.getBooks(this.state.q)
       .then(res =>
@@ -39,11 +42,13 @@ class Home extends Component {
       );
   };
 
+  // create a function that handles the form submission and triggers the getBooks function above that calls the API to search Google Books API and return the specific book. This is also passed to the form component.
   handleFormSubmit = event => {
     event.preventDefault();
     this.getBooks();
   };
 
+  // create a function that handles the user saving the book. If the user saves the book set a constant book equal to the book stored in state array. Once it gets that data trigger the API we created to update the database and store the book information (everything in the object below). Once we are good then trigger the getBooks function again.
   handleBookSave = id => {
     const book = this.state.books.find(book => book.id === id);
 
@@ -58,11 +63,14 @@ class Home extends Component {
     }).then(() => this.getBooks());
   };
 
+  // render the following stuff to the homepage
   render() {
     return (
+      // create a grid using the bootstrap components we created
       <Container>
         <Row>
           <Col size="md-12">
+          {/* create a hero for the homepage */}
             <Jumbotron>
               <h1 className="text-center">
                 <strong>(React) Google Books Search</strong>
@@ -72,6 +80,7 @@ class Home extends Component {
           </Col>
           <Col size="md-12">
             <Card title="Book Search" icon="far fa-book">
+              {/* import the form component here and add the handleInputChange, handleFormSubmit and q props */}
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
@@ -82,6 +91,7 @@ class Home extends Component {
         </Row>
         <Row>
           <Col size="md-12">
+          {/* create a card that will render the result data. If the books array is not empty then return the books information that is stored there. If the books array is empty then display the message also in the state. Also render a button where users can save the book. If this is clicked the it triggers the handleBookSave function */}
             <Card title="Results">
               {this.state.books.length ? (
                 <List>
@@ -117,4 +127,5 @@ class Home extends Component {
   }
 }
 
+// export the home component
 export default Home;
