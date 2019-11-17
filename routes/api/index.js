@@ -1,12 +1,13 @@
+// set constants equal to values we will use in this file
 const path = require("path");
 const router = require("express").Router();
 const bookRoutes = require("./books");
 const googleRoutes = require("./google");
 
-// Book routes
+// Have router use the book routes we created in the books file
 router.use("/books", bookRoutes);
 
-// Google Routes
+// Have router use the google route we created in the google file so we can search the Google Book API
 router.use("/google", googleRoutes);
 
 // For anything else, render the html page

@@ -5,9 +5,10 @@ import { Row, Col } from "../Grid";
 import "./style.css";
 
 
-// 
+// create a book component and bass in the all of the book data we can to display for a book. This is a child component that is used on the homepage and saved pages
 function Book({ title, subtitle, authors, link, description, image, Button }) {
   return (
+    // create and a render a list item that returns all of the specific book data passed through as props. This includes the book title, subtitle, authors, links, description, etc. 
     <ListItem>
       <Row className="flex-wrap-reverse">
         <Col size="md-8">

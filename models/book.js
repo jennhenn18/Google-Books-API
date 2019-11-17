@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// create a book schema so that saved books can be stored in the DB
 const bookSchema = new Schema({
   title: { type: String, required: true },
   subtitle: { type: String },
@@ -13,4 +14,5 @@ const bookSchema = new Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
+// export this schema
 module.exports = Book;
